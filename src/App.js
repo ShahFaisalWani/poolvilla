@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { PrimeReactProvider } from "primereact/api";
+import "primereact/resources/themes/lara-light-blue/theme.css";
+import "primeicons/primeicons.css";
+import "remixicon/fonts/remixicon.css";
+import "./Styles/DropdownButton.scss";
+
+import SearchForm from "./Components/SearchForm";
+import { useState } from "react";
+import HouseList from "./Components/HouseList";
 
 function App() {
+  const [data, setData] = useState(null);
+  const onSearchResult = (result) => {
+    setData(result);
+    console.log(data);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PrimeReactProvider>
+      <div className="App">
+        <SearchForm onSearchResult={onSearchResult} />
+        <HouseList data={data} />
+      </div>
+    </PrimeReactProvider>
   );
 }
 
