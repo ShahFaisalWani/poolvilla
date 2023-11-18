@@ -1,7 +1,6 @@
 import React from "react";
 
 const HouseCard = ({ house }) => {
-  console.log(house);
   return (
     <div className="house-card">
       <p className="tag">{house.location.name}</p>

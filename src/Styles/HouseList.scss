@@ -1,9 +1,22 @@
+.house-list-container {
+  > div {
+    > p {
+      font-weight: 700;
+      &:nth-child(2) {
+        color: #189ce4;
+      }
+    }
+  }
+}
 .house-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 0.5rem;
 
   .house-card {
+    :hover {
+      cursor: pointer;
+    }
     width: 190px;
     border-radius: 8px;
     overflow: hidden;
@@ -43,6 +56,7 @@
 
   .house-details {
     padding: 0 0.5em;
+    padding-bottom: 1em;
   }
 
   .house-details h2 {

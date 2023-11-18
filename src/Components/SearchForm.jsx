@@ -65,7 +65,7 @@ const SearchForm = ({ onSearchResult }) => {
     if (sea) data.far_from_sea_waterfall = sea.name;
 
     axios.post(url, data).then((res) => {
-      onSearchResult(res.data.results);
+      onSearchResult({ results: res.data.results, count: res.data.length });
     });
   };
 

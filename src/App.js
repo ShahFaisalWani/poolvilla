@@ -11,15 +11,14 @@ import HouseList from "./Components/HouseList";
 
 function App() {
   const [data, setData] = useState(null);
-  const onSearchResult = (result) => {
-    setData(result);
-    console.log(data);
+  const onSearchResult = (data) => {
+    setData(data);
   };
   return (
     <PrimeReactProvider>
       <div className="App">
         <SearchForm onSearchResult={onSearchResult} />
-        <HouseList data={data} />
+        <HouseList data={data?.results} count={data?.count} />
       </div>
     </PrimeReactProvider>
   );
