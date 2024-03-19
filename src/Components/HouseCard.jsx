@@ -1,8 +1,9 @@
 import React from "react";
 
 const HouseCard = ({ house }) => {
+  const title = house.code + " " + house.district;
   return (
-    <div className="house-card">
+    <a className="house-card" href={"/house/" + house.code} target="_blank">
       <p className="tag">{house.location.name}</p>
       <div className="house-image">
         <img
@@ -14,10 +15,13 @@ const HouseCard = ({ house }) => {
         />
       </div>
       <div className="house-details">
-        <p>
-          {house.code} {house.district}
+        <p className="title">
+          {title.length > 23 ? title.substring(0, 23) + ".." : title}
         </p>
-        <p className="price">฿{house.lowestPrice.price.toLocaleString()}</p>
+        <p className="price">
+          ราคา ฿ {house.lowestPrice.price.toLocaleString()}
+        </p>
+        <div className="line" />
         <div className="features">
           <p>
             <i className="ri-team-line"></i> สูงสุด {house.accommodate_number}
@@ -34,7 +38,7 @@ const HouseCard = ({ house }) => {
           </p>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

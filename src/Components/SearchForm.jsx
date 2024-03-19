@@ -7,10 +7,11 @@ import Sea from "./Sea";
 import Option from "./Option";
 import { Button } from "primereact/button";
 import axios from "axios";
+import Loading from "./Loading";
 
 export const SearchContext = createContext();
 
-const SearchForm = ({ onSearchResult }) => {
+const SearchForm = ({ onSearchResult, setResetPage }) => {
   const [location, setLocation] = useState(null);
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
@@ -20,6 +21,7 @@ const SearchForm = ({ onSearchResult }) => {
   const [bedrooms, setBedrooms] = useState(null);
   const [facilities, setFacilities] = useState([]);
   const [clear, setClear] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const handleClear = () => {
     setClear((prev) => !prev);
@@ -46,6 +48,7 @@ const SearchForm = ({ onSearchResult }) => {
     }
   }
   const handleSubmit = () => {
+    setLoading(true);
     const url =
       "https://api.poolvillacity.co.th/next-villapaza/api/customer/house/filter?offset=0&limit=30";
     const data = {
@@ -64,9 +67,19 @@ const SearchForm = ({ onSearchResult }) => {
     if (guests) data.guest = guests.name;
     if (sea) data.far_from_sea_waterfall = sea.name;
 
-    axios.post(url, data).then((res) => {
-      onSearchResult({ results: res.data.results, count: res.data.length });
-    });
+    axios
+      .post(url, data)
+      .then((res) => {
+        onSearchResult({
+          results: res.data.results,
+          count: res.data.length,
+          houses: res.data.houses,
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+        setResetPage((prev) => !prev);
+      });
   };
 
   return (
@@ -91,6 +104,7 @@ const SearchForm = ({ onSearchResult }) => {
         clear,
       }}
     >
+      {loading && <Loading />}
       <div style={{ display: "flex", flexDirection: "column", gap: "1em" }}>
         <Location />
         <div style={{ display: "flex", gap: "1em" }}>
@@ -111,6 +125,7 @@ const SearchForm = ({ onSearchResult }) => {
             icon="pi pi-search"
             className="search-button"
             onClick={handleSubmit}
+            disabled={loading}
           />
           <Button
             label="ล้างค่า"

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Calendar } from "primereact/calendar";
 import { addLocale } from "primereact/api";
-import { Dropdown } from "primereact/dropdown";
 import { SearchContext } from "./SearchForm";
 
 addLocale("th", {
@@ -70,38 +69,30 @@ export function CheckIn() {
       <style
         dangerouslySetInnerHTML={{
           __html: [
-            ".check-in .p-dropdown .p-dropdown-label::before {",
+            ".ci .p-calendar .p-button-icon-only::before {",
             "  content: 'Check-In';",
             "}",
           ].join("\n"),
         }}
       ></style>
-      <div className="button_input check-in" style={{ width: "100%" }}>
-        <Dropdown
-          value={value}
-          options={[{ value: value }]}
+      <div style={{ width: "100%" }} className="ci">
+        <Calendar
+          ref={btnRef}
+          value={checkIn}
+          onChange={(e) => setCheckIn(e.value)}
+          locale="th"
+          showButtonBar
+          dateFormat="dd/mm/yy"
           style={{ width: "100%" }}
-          optionLabel="value"
+          panelClassName="check-in-calendar"
+          minDate={today}
           placeholder="เลือกวันเข้าพัก"
-          className="w-full md:w-14rem"
-          dropdownIcon="pi pi-calendar-minus"
-          onClick={(e) => {
-            e.preventDefault();
-            btnRef.current.show();
-          }}
+          showIcon
+          icon="pi pi-calendar-minus"
+          prevIcon="pi pi-angle-left"
+          nextIcon="pi pi-angle-right"
         />
       </div>
-      <Calendar
-        ref={btnRef}
-        value={checkIn}
-        onChange={(e) => setCheckIn(e.value)}
-        locale="th"
-        showButtonBar
-        dateFormat="dd/mm/yy"
-        style={{ width: "50%", display: "none" }}
-        panelClassName="check-in-calendar"
-        minDate={today}
-      />
     </>
   );
 }
@@ -132,38 +123,30 @@ export function CheckOut() {
       <style
         dangerouslySetInnerHTML={{
           __html: [
-            ".check-out .p-dropdown .p-dropdown-label::before {",
+            ".co .p-calendar .p-button-icon-only::before {",
             "  content: 'Check-Out';",
             "}",
           ].join("\n"),
         }}
       ></style>
-      <div className="button_input check-out" style={{ width: "100%" }}>
-        <Dropdown
-          value={value}
-          options={[{ value: value }]}
+      <div style={{ width: "100%" }} className="co">
+        <Calendar
+          ref={btnRef}
+          value={checkOut}
+          onChange={(e) => setCheckOut(e.value)}
+          locale="th"
+          showButtonBar
+          dateFormat="dd/mm/yy"
           style={{ width: "100%" }}
-          optionLabel="value"
+          panelClassName="check-out-calendar"
+          minDate={today}
           placeholder="เลือกวันเข้าพัก"
-          className="w-full md:w-14rem"
-          dropdownIcon="pi pi-calendar-minus"
-          onClick={(e) => {
-            e.preventDefault();
-            btnRef.current.show();
-          }}
+          showIcon
+          icon="pi pi-calendar-minus"
+          prevIcon="pi pi-angle-left"
+          nextIcon="pi pi-angle-right"
         />
       </div>
-      <Calendar
-        ref={btnRef}
-        value={checkOut}
-        onChange={(e) => setCheckOut(e.value)}
-        locale="th"
-        showButtonBar
-        dateFormat="dd/mm/yy"
-        style={{ width: "50%", display: "none" }}
-        panelClassName="check-out-calendar"
-        minDate={today}
-      />
     </>
   );
 }

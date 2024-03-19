@@ -1,0 +1,67 @@
+@import "./House/House.scss";
+@import "./House/Calendar.scss";
+@import "./Styles/HouseList.scss";
+@import "./Styles/DropdownButton.scss";
+
+.ast-button,
+.button,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  background: none;
+  &:hover {
+    background: none;
+  }
+  &:focus {
+    background: none;
+  }
+  &:active {
+    background: none;
+  }
+}
+
+.App {
+  margin: 2em 0em;
+
+  a,
+  a:hover,
+  a:focus,
+  a:active {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+  * {
+    font-family: "Kanit", sans-serif;
+  }
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    background-color: rgba(239, 243, 248, 0.5); /* Gray background */
+    position: fixed; /* Fixed position to ignore parent's margin */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  .ProgressSpinner {
+    width: 5vw;
+    height: 5vw;
+    stroke-width: 8;
+    fill: var(--surface-ground);
+    animation-duration: 0.5s;
+    position: relative;
+    z-index: 11;
+  }
+
+  @media (max-width: 600px) {
+    .ProgressSpinner {
+      width: 10vw;
+      height: 10vw;
+    }
+  }
+}

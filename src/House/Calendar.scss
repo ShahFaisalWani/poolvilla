@@ -1,0 +1,265 @@
+.calendar {
+  .fc-toolbar-title {
+    font-size: 1em !important;
+    font-weight: 500;
+  }
+  .fc-today-button {
+    display: none;
+  }
+  @media (max-width: 600px) {
+    .fc-view-harness td {
+      padding: 0 !important;
+    }
+  }
+  .fc-button-group {
+    > * {
+      border: none;
+      background: transparent;
+      color: #2c3e50 !important;
+      transition: all 0.2s;
+      &:hover {
+        background: #e2e2e2 !important;
+      }
+      &:focus {
+        box-shadow: none;
+      }
+      &:focus {
+        box-shadow: none;
+        &:focus {
+          box-shadow: none !important;
+          background: #e2e2e2 !important;
+        }
+      }
+    }
+  }
+
+  .fc-view-harness {
+    background: #fff;
+
+    th {
+      background: transparent;
+      border-color: transparent;
+      padding-top: 5px;
+      color: #343a40;
+    }
+    td {
+      color: #495057;
+      border-color: transparent;
+      padding: 0 5px 5px;
+    }
+  }
+  .fc-col-header {
+    .fc-col-header-cell {
+      padding: 5px 20px;
+    }
+  }
+  .fc-day-today {
+    background: inherit !important;
+  }
+
+  .cell {
+    cursor: pointer;
+    .fc-daygrid-day-frame {
+      border-top: 8px solid #eee;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+    .fc-h-event {
+      border: none;
+    }
+    .fc-daygrid-day-top {
+      padding: 5px 20px !important;
+    }
+    img {
+      position: relative;
+      transform: translate(0%, -50%);
+    }
+  }
+
+  @media (max-width: 600px) {
+    font-size: 10px;
+    .fc-toolbar {
+      font-size: 1em;
+    }
+
+    .cell {
+      .fc-daygrid-day-frame {
+        border-top: 4px solid #eee;
+      }
+      .fc-daygrid-day-top {
+        padding: 0 0em !important;
+        justify-content: center;
+        font-size: 15px;
+      }
+    }
+  }
+}
+.calendar-dialog {
+  font-family: kanit;
+  .p-dialog-title {
+    font-weight: 500;
+    font-size: 1.25rem !important;
+  }
+  .p-dialog-header {
+    padding-block: 1.5em 0.5em;
+    border: none;
+    border: none;
+  }
+  .content {
+    text-align: center;
+    .price {
+      margin-bottom: 1.5em;
+    }
+    p {
+      margin: 0.5em;
+    }
+  }
+  .price {
+    font-size: 1em;
+    .copy-button {
+      border: none;
+      background: transparent;
+      color: #ff8818;
+      font-size: 1.25em;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0 0.25em !important;
+    }
+  }
+  .button {
+    background: #e50000;
+    width: 10em;
+    height: 3em;
+    font-size: 12px;
+    color: #fff;
+    border: none;
+    display: inline-flex;
+    span {
+      font-weight: 400;
+    }
+    &:hover {
+      background: #d30303;
+    }
+  }
+}
+.toast {
+  .p-toast-message-content {
+    display: flex;
+    align-items: center;
+    .p-toast-summary {
+      font-weight: 500;
+    }
+    button {
+      background: transparent !important;
+    }
+  }
+}
+
+.below-calendar {
+  .circles {
+    display: flex;
+    gap: 2em;
+    margin-block: 2em;
+
+    > * {
+      display: flex;
+    }
+    .circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      margin-right: 0.25em;
+    }
+    .sale {
+      align-items: center;
+    }
+  }
+
+  .extra {
+    color: #ff8818;
+    p {
+      margin: 0.25em 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .circles {
+      display: inline-flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+  }
+}
+.sale-div {
+  background: #000;
+  position: relative;
+  height: 0px;
+  .sale-img {
+    position: absolute;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .calendar {
+    .singleCalendar {
+      display: none;
+    }
+  }
+  .fc-media-screen {
+    max-height: 600px !important;
+  }
+  .fc-view-harness {
+    background: transparent !important;
+  }
+  .fc-multiMonthThreeMonth-view {
+    border: none !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    height: fit-content;
+    .fc-multimonth-month {
+      background: #fff;
+      border: 1px solid #e5e7e8;
+      border-radius: 10px;
+      overflow: hidden !important;
+    }
+    .fc-daygrid-body {
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .calendar {
+    .multiCalendar {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .calendar {
+    .fc-toolbar-title {
+      font-size: 1.5em !important;
+      font-weight: 500;
+    }
+    .fc-button-group {
+      > * {
+        font-size: 1.5em;
+      }
+    }
+  }
+  th.fc-col-header-cell.fc-day {
+    > * {
+      > * {
+        font-size: 13px;
+        padding: 0 !important;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+  .fc-view-harness {
+    th {
+      padding: 0 0 !important;
+    }
+  }
+}

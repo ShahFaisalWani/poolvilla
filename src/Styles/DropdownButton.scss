@@ -1,6 +1,19 @@
+ul {
+  margin: 0 0;
+  li {
+    padding-left: 1.5em;
+  }
+}
 .button_input {
   .p-dropdown {
     position: relative;
+    .p-dropdown-items {
+      margin: 0;
+      padding: 0;
+    }
+    .p-dropdown-item {
+      padding-left: 0 0.5em;
+    }
     .p-dropdown-label::before {
       position: absolute;
       top: -2px;
@@ -26,9 +39,56 @@
     .p-dropdown-trigger {
       position: absolute;
       height: 100%;
+      color: black;
     }
   }
 }
+
+.p-calendar {
+  border: 1px solid #cbcbcb;
+  border-radius: 5px;
+  background: #fff;
+  position: relative;
+  border-color: #ced4da;
+
+  .p-inputtext {
+    color: black;
+    position: relative;
+    top: 14px;
+    padding-left: 4em;
+    padding-block: 1.5em;
+    font-size: 11px;
+    border: none;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .p-datepicker-trigger {
+    position: absolute;
+    height: 100%;
+    line-height: 1em !important;
+  }
+  .p-button-icon-only {
+    background: transparent !important;
+    border: none;
+    color: black;
+    opacity: 1;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding-left: 1em;
+  }
+  .p-button-icon-only::before {
+    position: absolute;
+    top: 8px;
+    left: 44px;
+    font-size: 15px;
+    font-weight: 400 !important;
+    color: black;
+    opacity: 1 !important;
+  }
+}
+
 .p-dropdown-item {
   font-size: 13px;
   padding-block: 1em;
@@ -53,11 +113,26 @@
     color: #189ce4;
   }
 }
-.check-in-calendar {
-  transform: translate(15%, 30%);
+.p-datepicker-header {
+  button {
+    background: #fff !important;
+    color: #189ce4 !important;
+  }
 }
-.check-out-calendar {
-  transform: translate(100%, 30%);
+.p-datepicker-buttonbar {
+  button {
+    background: #fff !important;
+    color: #189ce4 !important;
+  }
+}
+.p-datepicker {
+  table {
+    border: none;
+  }
+  td,
+  th {
+    border: none !important;
+  }
 }
 
 .price-overlay {
@@ -150,13 +225,14 @@
 }
 .container {
   font-size: 14px;
+  .line {
+    margin-block: 1.5em;
+    height: 2px;
+    border: none;
+    background: #dcdcdc;
+  }
 }
-.line {
-  margin-block: 1.5em;
-  height: 2px;
-  border: none;
-  background: #dcdcdc;
-}
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -195,19 +271,21 @@
     box-shadow: 0 1px 2px #1018280d;
     border-radius: 50px;
     height: 2.5em;
+    .p-button-label {
+      font-size: 13px;
+    }
   }
   .search-button {
     background: #ff8c1c;
     border-color: #ff8c1c;
     width: 65%;
-    .p-button-label {
-      font-size: 13px;
-    }
+    color: #fff !important;
   }
   .clear-button {
     width: 35%;
     background: #fff;
-    border-color: #fff;
+    // border-color: #fff;
     color: #000;
+    border: 1px solid #e7e7e7;
   }
 }

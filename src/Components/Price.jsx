@@ -53,7 +53,7 @@ export default function Price() {
       <OverlayPanel
         className="price-overlay"
         ref={panelRef}
-        style={{ width: "30%" }}
+        style={{ width: "25%" }}
       >
         <div
           className="card flex justify-content-center"
@@ -76,7 +76,7 @@ export default function Price() {
               value={price ? price[0] : 0}
               onChange={(e) =>
                 setPrice((prev) => {
-                  return [parseInt(e.target.value), prev[1]];
+                  return [parseInt(e.target.value), prev ? prev[1] : 50000];
                 })
               }
               style={{ width: 100, height: 25, fontSize: 14 }}
@@ -87,7 +87,7 @@ export default function Price() {
               value={price ? price[1] : 50000}
               onChange={(e) =>
                 setPrice((prev) => {
-                  return [prev[0], parseInt(e.target.value)];
+                  return [prev ? prev[1] : 0, parseInt(e.target.value)];
                 })
               }
               style={{ width: 100, height: 25, fontSize: 14 }}
