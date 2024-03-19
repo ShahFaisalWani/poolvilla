@@ -26,6 +26,7 @@ export default function Calendar({ data }) {
   const [visible, setVisible] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [width, setWidth] = useState(750);
+  const [events, setEvents] = useState([]);
   const house = data.house;
   const toast = useRef(null);
 
@@ -37,61 +38,68 @@ export default function Calendar({ data }) {
     };
   });
 
-  const events = [];
-  data.book.map((event) => {
-    if (event.date_start !== event.date_end) {
-      const alldates = getDatesInRange(event.date_start, event.date_end);
-      alldates.map((dates, i) => {
-        events.push({
-          id: event._id + i,
-          start: new Date(dates).toISOString().replace(/T.*$/, ""),
+  useEffect(() => {
+    const updatedEvents = [];
+    data.book.forEach((event) => {
+      if (event.date_start !== event.date_end) {
+        const alldates = getDatesInRange(event.date_start, event.date_end);
+        alldates.forEach((dates, i) => {
+          updatedEvents.push({
+            id: event._id + i,
+            start: new Date(dates).toISOString().replace(/T.*$/, ""),
+            status: event.status.name_en,
+          });
+        });
+      } else {
+        updatedEvents.push({
+          id: event._id,
+          start: new Date(event.date_start).toISOString().replace(/T.*$/, ""),
           status: event.status.name_en,
         });
-      });
-    } else {
-      events.push({
-        id: event._id,
-        start: new Date(event.date_start).toISOString().replace(/T.*$/, ""),
-        status: event.status.name_en,
-      });
-    }
-  });
-  data.holiday.forEach((hol) => {
-    const startDate = new Date(hol.date[0]).toISOString().replace(/T.*$/, "");
+      }
+    });
+    data.holiday.forEach((hol) => {
+      const startDate = new Date(hol.date[0]).toISOString().replace(/T.*$/, "");
 
-    const isDateExist = events.some((event) => event.start === startDate);
+      const isDateExist = updatedEvents.some(
+        (event) => event.start === startDate
+      );
 
-    if (!isDateExist) {
-      hol.date.map((dates, i) => {
-        events.push({
-          id: hol._id + i,
-          start: new Date(dates).toISOString().replace(/T.*$/, ""),
-          status: "holiday",
-          price: hol.sum,
-          accommodate_number: hol.accommodate_number,
+      if (!isDateExist) {
+        hol.date.forEach((dates, i) => {
+          updatedEvents.push({
+            id: hol._id + i,
+            start: new Date(dates).toISOString().replace(/T.*$/, ""),
+            status: "holiday",
+            price: hol.sum,
+            accommodate_number: hol.accommodate_number,
+          });
         });
-      });
-    }
-  });
+      }
+    });
 
-  data.promotion.forEach((hol) => {
-    const startDate = new Date(hol.date[0]).toISOString().replace(/T.*$/, "");
-    const day_of_week = new Date(hol.date[0]).getDay();
-    const isDateExist = events.some((event) => event.start === startDate);
+    data.promotion.forEach((hol) => {
+      const startDate = new Date(hol.date[0]).toISOString().replace(/T.*$/, "");
+      const day_of_week = new Date(hol.date[0]).getDay();
+      const isDateExist = updatedEvents.some(
+        (event) => event.start === startDate
+      );
 
-    if (!isDateExist) {
-      hol.date.map((dates, i) => {
-        events.push({
-          id: hol._id + i,
-          start: new Date(dates).toISOString().replace(/T.*$/, ""),
-          status: "promotion",
-          old: house_price[day_of_week].sum,
-          sum: hol.sum,
-          accommodate_number: hol.accommodate_number,
+      if (!isDateExist) {
+        hol.date.forEach((dates, i) => {
+          updatedEvents.push({
+            id: hol._id + i,
+            start: new Date(dates).toISOString().replace(/T.*$/, ""),
+            status: "promotion",
+            old: house_price[day_of_week].sum,
+            sum: hol.sum,
+            accommodate_number: hol.accommodate_number,
+          });
         });
-      });
-    }
-  });
+      }
+    });
+    setEvents(updatedEvents);
+  }, [data]);
 
   const eventRender = (info) => {
     let div = document.createElement("div");
@@ -304,15 +312,14 @@ export default function Calendar({ data }) {
     const width = window.innerWidth;
     if (width > 1000) setWidth(750);
     else setWidth(window.innerWidth * 1.5);
+    setScreenWidth(window.innerWidth);
   }, [window.innerWidth]);
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
-      const newWidth = window.innerWidth;
-      setScreenWidth(newWidth);
-      console.log(newWidth);
+      setScreenWidth(window.innerWidth);
     };
 
     window.addEventListener("resize", handleResize);
@@ -324,78 +331,31 @@ export default function Calendar({ data }) {
 
   return (
     <div className="calendar">
-      {screenWidth}
-      {screenWidth > 900 ? (
-        <FullCalendar
-          timeZone="Asia/Bangkok"
-          plugins={[dayGridPlugin, interactionPlugin, multiMonthPlugin]}
-          locale={thLocale}
-          initialView="multiMonthThreeMonth"
-          multiMonthMaxColumns={3}
-          views={{
-            multiMonthThreeMonth: {
-              type: "multiMonth",
-              duration: { months: 3 },
-            },
-          }}
-          firstDay={0}
-          eventContent={eventRender}
-          events={events}
-          dayCellClassNames={"cell"}
-          height={width}
-          dateClick={handleEventClick}
-        />
-      ) : (
-        <FullCalendar
-          timeZone="Asia/Bangkok"
-          plugins={[dayGridPlugin, interactionPlugin]}
-          locale={thLocale}
-          initialView="dayGridMonth"
-          views={""}
-          firstDay={0}
-          eventContent={eventRender}
-          events={events}
-          dayCellClassNames={"cell"}
-          height={width}
-          dateClick={handleEventClick}
-        />
-      )}
-      {/* <div className="multiCalendar">
-        <FullCalendar
-          timeZone="Asia/Bangkok"
-          plugins={[dayGridPlugin, interactionPlugin, multiMonthPlugin]}
-          locale={thLocale}
-          initialView="multiMonthThreeMonth"
-          multiMonthMaxColumns={3}
-          views={{
-            multiMonthThreeMonth: {
-              type: "multiMonth",
-              duration: { months: 3 },
-            },
-          }}
-          firstDay={0}
-          eventContent={eventRender}
-          events={events}
-          dayCellClassNames={"cell"}
-          height={width}
-          dateClick={handleEventClick}
-        />
-      </div>
-      <div className="singleCalendar">
-        <FullCalendar
-          timeZone="Asia/Bangkok"
-          plugins={[dayGridPlugin, interactionPlugin]}
-          locale={thLocale}
-          initialView="dayGridMonth"
-          firstDay={0}
-          eventContent={eventRender}
-          events={events}
-          dayCellClassNames={"cell"}
-          height={width}
-          dateClick={handleEventClick}
-        />
-      </div> */}
-
+      <FullCalendar
+        timeZone="Asia/Bangkok"
+        plugins={[dayGridPlugin, interactionPlugin, multiMonthPlugin]}
+        locale={thLocale}
+        initialView={
+          screenWidth > 900 ? "multiMonthThreeMonth" : "dayGridMonth"
+        }
+        multiMonthMaxColumns={3}
+        views={{
+          multiMonthThreeMonth: {
+            type: "multiMonth",
+            duration: { months: 3 },
+          },
+        }}
+        firstDay={0}
+        eventContent={eventRender}
+        events={events}
+        dayCellClassNames={"cell"}
+        height={width}
+        dateClick={handleEventClick}
+        windowResize={(e) => {
+          if (screenWidth < 900) e.view.calendar.changeView("dayGridMonth");
+          else e.view.calendar.changeView("multiMonthThreeMonth");
+        }}
+      />
       <div className="below-calendar">
         <div className="circles">
           <div>

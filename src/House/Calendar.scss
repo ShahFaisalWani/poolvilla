@@ -199,13 +199,8 @@
   }
 }
 @media only screen and (min-width: 900px) {
-  .calendar {
-    .singleCalendar {
-      display: none;
-    }
-  }
   .fc-media-screen {
-    max-height: 600px !important;
+    max-height: 550px !important;
   }
   .fc-view-harness {
     background: transparent !important;
@@ -223,14 +218,6 @@
       overflow: hidden !important;
     }
     .fc-daygrid-body {
-    }
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .calendar {
-    .multiCalendar {
-      display: none;
     }
   }
 }

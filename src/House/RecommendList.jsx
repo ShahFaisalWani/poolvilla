@@ -5,7 +5,7 @@ const RecommendList = ({ houses }) => {
   return (
     <div>
       <br />
-      <div className="header">
+      <div className="myheader">
         <span>ที่พักแนะนำ</span>
       </div>
       <br />

@@ -1,32 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
+import NoneSvg from "../assets/no-data.svg";
 
 const Facilities = ({ facilities, details, services }) => {
+  const [selected, setSelected] = useState("function");
+  const filteredFacilities = facilities.filter(
+    (item) => item.type === selected
+  );
+
   return (
     <>
       <div className="facilities-detail">
-        <div className="header">
-          <span>สิ่งอำนวยความสะดวก</span>
+        <div className="myheader options">
+          <button
+            onClick={() => setSelected("function")}
+            className={selected === "function" ? "active" : ""}
+          >
+            ฟังก์ชัน
+          </button>
+          <button
+            onClick={() => setSelected("fun")}
+            className={selected === "fun" ? "active" : ""}
+          >
+            สิ่งอำนวยความสะดวก
+          </button>
+          <button
+            onClick={() => setSelected("kitchenware")}
+            className={selected === "kitchenware" ? "active" : ""}
+          >
+            อุปกรณ์ครัว
+          </button>
         </div>
-        <div className="list">
-          {facilities.map((facility, i) => (
-            <div key={i}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: facility.path.replace(
-                    /var\(--next-color-svg\)/g,
-                    "#129fe0"
-                  ),
-                }}
-                style={{ color: "#129fe0" }}
-              />
-              <span>{facility.name_th}</span>
+        <div>
+          {filteredFacilities.length > 0 ? (
+            <div className="list">
+              {filteredFacilities.map((facility, i) => (
+                <div key={i} className="not-none">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: facility.path.replace(
+                        /var\(--next-color-svg\)/g,
+                        "#129fe0"
+                      ),
+                    }}
+                    style={{ color: "#129fe0" }}
+                  />
+                  <span>{facility.name_th}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          ) : (
+            <div class="none">
+              <img src={NoneSvg} alt="" />
+              <span>ไม่พบข้อมูล</span>
+            </div>
+          )}
         </div>
       </div>
       {details && (
         <div>
-          <div className="header">
+          <div className="myheader" style={{ marginBottom: "1em" }}>
             <span>รายละเอียดเพิ่มเติม</span>
           </div>
           <div

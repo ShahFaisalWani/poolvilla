@@ -8,7 +8,7 @@ const LinkSection = ({ data }) => {
     <>
       <div className="link-section">
         <div className="title">
-          <span style={{ fontWeight: 500 }}>
+          <span style={{ fontWeight: 500, color: "black" }}>
             {data.name} {data.district}
           </span>
           <span style={{ color: "#CDD2D4", fontSize: "14px" }}>
@@ -37,7 +37,7 @@ const LinkSection = ({ data }) => {
         </div>
       </div>
       <div className="house-detail">
-        <div className="header">
+        <div className="myheader">
           <span>ข้อมูลที่พัก</span>
         </div>
         <div className="list">

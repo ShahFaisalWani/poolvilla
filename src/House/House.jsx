@@ -66,7 +66,7 @@ function House({ code }) {
   }, [code]);
 
   if (loading) return <Loading />;
-  console.log(data.house);
+
   return (
     <div className="House">
       <Helmet>
