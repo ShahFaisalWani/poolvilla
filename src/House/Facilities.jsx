@@ -59,7 +59,7 @@ const Facilities = ({ facilities, details, services }) => {
       {details && (
         <div>
           <div className="myheader" style={{ marginBottom: "1em" }}>
-            <span>รายละเอียดเพิ่มเติม</span>
+            <h2 className="h2-header">รายละเอียดเพิ่มเติม</h2>
           </div>
           <div
             dangerouslySetInnerHTML={{

@@ -15,9 +15,9 @@ const HouseCard = ({ house }) => {
         />
       </div>
       <div className="house-details">
-        <p className="title">
+        <h3 className="title">
           {title.length > 23 ? title.substring(0, 23) + ".." : title}
-        </p>
+        </h3>
         <p className="price">
           ราคา ฿ {house.lowestPrice.price.toLocaleString()}
         </p>

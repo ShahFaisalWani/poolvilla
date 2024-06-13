@@ -40,6 +40,7 @@ export default function Calendar({ data }) {
 
   useEffect(() => {
     const updatedEvents = [];
+
     data.book.forEach((event) => {
       if (event.date_start !== event.date_end) {
         const alldates = getDatesInRange(event.date_start, event.date_end);
@@ -58,45 +59,45 @@ export default function Calendar({ data }) {
         });
       }
     });
+
     data.holiday.forEach((hol) => {
-      const startDate = new Date(hol.date[0]).toISOString().replace(/T.*$/, "");
+      const isDateExist = (date) =>
+        updatedEvents.some((event) => event.start === date);
 
-      const isDateExist = updatedEvents.some(
-        (event) => event.start === startDate
-      );
+      hol.date.forEach((date, i) => {
+        if (hol.date.length > 1 && i == hol.date.length - 1) return;
+        const startDate = new Date(date).toISOString().replace(/T.*$/, "");
 
-      if (!isDateExist) {
-        hol.date.forEach((dates, i) => {
+        if (!isDateExist(startDate)) {
           updatedEvents.push({
             id: hol._id + i,
-            start: new Date(dates).toISOString().replace(/T.*$/, ""),
+            start: startDate,
             status: "holiday",
             price: hol.sum,
             accommodate_number: hol.accommodate_number,
           });
-        });
-      }
+        }
+      });
     });
 
     data.promotion.forEach((hol) => {
-      const startDate = new Date(hol.date[0]).toISOString().replace(/T.*$/, "");
       const day_of_week = new Date(hol.date[0]).getDay();
-      const isDateExist = updatedEvents.some(
-        (event) => event.start === startDate
-      );
 
-      if (!isDateExist) {
-        hol.date.forEach((dates, i) => {
+      const isDateExist = (date) =>
+        updatedEvents.some((event) => event.start === date);
+      hol.date.forEach((date, i) => {
+        const startDate = new Date(date).toISOString().replace(/T.*$/, "");
+        if (!isDateExist(startDate)) {
           updatedEvents.push({
             id: hol._id + i,
-            start: new Date(dates).toISOString().replace(/T.*$/, ""),
+            start: startDate,
             status: "promotion",
             old: house_price[day_of_week].sum,
             sum: hol.sum,
             accommodate_number: hol.accommodate_number,
           });
-        });
-      }
+        }
+      });
     });
     setEvents(updatedEvents);
   }, [data]);
@@ -125,36 +126,38 @@ export default function Calendar({ data }) {
         borderColor = "#ffcc1a";
         break;
       default:
-        backgroundColor = "#fff";
-        borderColor = "#fff";
+      // backgroundColor = "#fff";
+      // borderColor = "#fff";
     }
 
     const eventDate = info.event.start.toISOString().split("T")[0];
-    const cell = document.querySelector(
+
+    const cells = document.querySelectorAll(
       `td[data-date='${eventDate}'] .fc-daygrid-day-frame`
     );
+    cells.forEach((cell) => {
+      if (cell) {
+        cell.style.backgroundColor = backgroundColor;
+        cell.style.borderColor = borderColor;
 
-    if (cell) {
-      cell.style.backgroundColor = backgroundColor;
-      cell.style.borderColor = borderColor;
+        let img = cell.querySelector("img");
 
-      let img = cell.querySelector("img");
+        if (!img && status === "promotion") {
+          const div = document.createElement("div");
+          div.className = "sale-div";
 
-      if (!img && status === "promotion") {
-        const div = document.createElement("div");
-        div.className = "sale-div";
-
-        img = document.createElement("img");
-        img.className = "sale-img";
-        img.style.width = "100%";
-        img.style.padding = "1em";
-        img.style.paddingBottom = "4em";
-        div.appendChild(img);
-        cell.appendChild(div);
-        img.src = saleImg;
-        cell.style.border = "4px solid #ffcc1a";
+          img = document.createElement("img");
+          img.className = "sale-img";
+          img.style.width = "100%";
+          // img.style.padding = "1em";
+          img.style.paddingBottom = "1em";
+          div.appendChild(img);
+          cell.appendChild(div);
+          img.src = saleImg;
+          cell.classList.add("sale-cell");
+        }
       }
-    }
+    });
 
     let arrayOfDomNodes = [div];
     return { domNodes: arrayOfDomNodes };
@@ -417,7 +420,7 @@ export default function Calendar({ data }) {
         >
           <div className="content">
             <p>{selectedEvent.date}</p>
-            <p className="price">
+            <div className="price">
               {renderSwitch()}{" "}
               {selectedEvent.status !== "deposit already paid" &&
                 selectedEvent.status !== "maintenance" &&
@@ -426,7 +429,7 @@ export default function Calendar({ data }) {
                     <i className="ri-file-copy-line"></i>
                   </button>
                 )}
-            </p>
+            </div>
             <Button
               label="ปิด"
               className="button"

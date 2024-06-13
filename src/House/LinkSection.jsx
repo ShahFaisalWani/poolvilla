@@ -8,9 +8,9 @@ const LinkSection = ({ data }) => {
     <>
       <div className="link-section">
         <div className="title">
-          <span style={{ fontWeight: 500, color: "black" }}>
+          <h1 className="name">
             {data.name} {data.district}
-          </span>
+          </h1>
           <span style={{ color: "#CDD2D4", fontSize: "14px" }}>
             {data.code}
           </span>
@@ -23,7 +23,7 @@ const LinkSection = ({ data }) => {
         </div>
         <div className="buttons">
           <a
-            hred="https://line.me/R/ti/p/@231irpmr"
+            href="https://line.me/R/ti/p/%40817twshm"
             target="_blank"
             style={{ display: "none" }}
             ref={aRef}
@@ -38,7 +38,7 @@ const LinkSection = ({ data }) => {
       </div>
       <div className="house-detail">
         <div className="myheader">
-          <span>ข้อมูลที่พัก</span>
+          <h2 className="h2-header">ข้อมูลที่พัก</h2>
         </div>
         <div className="list">
           <div>

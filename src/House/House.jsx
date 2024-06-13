@@ -71,7 +71,7 @@ function House({ code }) {
     <div className="House">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{`${data.house.name} ${data.house.location?.name} ${data.house.code} | ${data.house.number_of_bedrooms} ห้องนอน BaanPuck`}</title>
+        <title>{`${data.house.name} ${data.house.location?.name} ${data.house.code} | ${data.house.number_of_bedrooms} ห้องนอน Poolvillacity`}</title>
       </Helmet>
       <ImgGallery data={data.house} />
       <LinkSection data={data.house} />
