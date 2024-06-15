@@ -8,7 +8,7 @@
   "license": "ISC",
   "scripts": {
     "start": "react-scripts start",
-    "build": "PUBLIC_URL=/wp-content/themes/flatsome-child/build react-scripts build && npm run postbuild",
+    "build": "PUBLIC_URL=/wp-content/themes/astra-child/build react-scripts build && npm run postbuild",
     "postbuild": "cd build/static/js && cp `ls *.js | grep -v '.chunk.js' | grep -v '.map' | head -1` ../../main.js && cd ../css && cp `ls *.css | head -1` ../../main.css && cd ../../../ && cp -r ./build ../",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

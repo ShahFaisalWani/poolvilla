@@ -84,7 +84,7 @@
     .name {
       font-weight: 500 !important;
       color: #000 !important;
-      font-size: 16px;
+      font-size: 16px !important;
     }
     > p:first-child {
       font-weight: 500;
@@ -183,12 +183,15 @@
   &.options {
     border-bottom: 1px solid #dee2e6 !important;
     button {
+      font-size: 14px !important;
       padding: 1em 1em;
       margin: 0 !important;
       border: none !important;
       border-bottom: 1px solid transparent !important;
       border-top-right-radius: 6px;
       border-top-left-radius: 6px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
       cursor: pointer;
       &:hover {
         background: #e5e7e8 !important;

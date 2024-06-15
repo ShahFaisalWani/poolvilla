@@ -8,9 +8,9 @@ const LinkSection = ({ data }) => {
     <>
       <div className="link-section">
         <div className="title">
-          <h1 className="name">
+          <span className="name">
             {data.name} {data.district}
-          </h1>
+          </span>
           <span style={{ color: "#6c757d", fontSize: "14px" }}>
             {data.code}
           </span>
@@ -38,7 +38,7 @@ const LinkSection = ({ data }) => {
       </div>
       <div className="house-detail">
         <div className="myheader">
-          <h2 className="h2-header">ข้อมูลที่พัก</h2>
+          <div className="h2-header">ข้อมูลที่พัก</div>
         </div>
         <div className="list">
           <div>
