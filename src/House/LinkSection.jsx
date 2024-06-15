@@ -11,7 +11,7 @@ const LinkSection = ({ data }) => {
           <h1 className="name">
             {data.name} {data.district}
           </h1>
-          <span style={{ color: "#CDD2D4", fontSize: "14px" }}>
+          <span style={{ color: "#6c757d", fontSize: "14px" }}>
             {data.code}
           </span>
           <span>

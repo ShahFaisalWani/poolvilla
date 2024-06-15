@@ -41,6 +41,9 @@ export default function Calendar({ data }) {
   useEffect(() => {
     const updatedEvents = [];
 
+    const isDateExist = (date) =>
+      updatedEvents.some((event) => event.start === date);
+
     data.book.forEach((event) => {
       if (event.date_start !== event.date_end) {
         const alldates = getDatesInRange(event.date_start, event.date_end);
@@ -61,16 +64,12 @@ export default function Calendar({ data }) {
     });
 
     data.holiday.forEach((hol) => {
-      const isDateExist = (date) =>
-        updatedEvents.some((event) => event.start === date);
-
-      hol.date.forEach((date, i) => {
-        if (hol.date.length > 1 && i == hol.date.length - 1) return;
-        const startDate = new Date(date).toISOString().replace(/T.*$/, "");
+      hol.date.slice(0, -1).forEach((date, i) => {
+        const startDate = new Date(date).toISOString().split("T")[0];
 
         if (!isDateExist(startDate)) {
           updatedEvents.push({
-            id: hol._id + i,
+            id: `${hol._id}${i}`,
             start: startDate,
             status: "holiday",
             price: hol.sum,
@@ -81,18 +80,16 @@ export default function Calendar({ data }) {
     });
 
     data.promotion.forEach((hol) => {
-      const day_of_week = new Date(hol.date[0]).getDay();
+      hol.date.slice(0, -1).forEach((date, i) => {
+        const startDate = new Date(date).toISOString().split("T")[0];
 
-      const isDateExist = (date) =>
-        updatedEvents.some((event) => event.start === date);
-      hol.date.forEach((date, i) => {
-        const startDate = new Date(date).toISOString().replace(/T.*$/, "");
         if (!isDateExist(startDate)) {
+          const dayOfWeek = new Date(date).getDay();
           updatedEvents.push({
-            id: hol._id + i,
+            id: `${hol._id}${i}`,
             start: startDate,
             status: "promotion",
-            old: house_price[day_of_week].sum,
+            old: house_price[dayOfWeek].sum,
             sum: hol.sum,
             accommodate_number: hol.accommodate_number,
           });
