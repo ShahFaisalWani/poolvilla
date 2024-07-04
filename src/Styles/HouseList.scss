@@ -23,7 +23,7 @@
       cursor: pointer;
     }
     width: 190px;
-    height: 250px;
+    min-height: 250px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -55,50 +55,49 @@
     img {
       width: 100%;
       aspect-ratio: 16/10;
+      object-fit: cover;
       border-radius: 8px;
       filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
     }
   }
 
   .house-details {
-    padding: 0 0.5em;
-    .title {
-      margin-top: 1em;
-      color: #000 !important;
-      font-size: 16px !important;
-      font-weight: normal !important;
-      line-height: 0;
-    }
-    p {
-      padding: 0;
-      margin-block: 0em;
-    }
-    .line {
-      margin-block: 0.5em;
-      height: 1.5px;
-      border: none;
-      background: #dcdcdc;
-    }
-  }
-
-  .price {
-    color: #000;
-    font-weight: 400;
-    font-size: 13px;
-    margin-top: 1em !important;
-  }
-
-  .features {
-    color: #189ce4;
-    margin-top: 8px;
     display: flex;
-    align-items: center;
-    gap: 0.7em;
-    p {
-      margin: 4px 0;
-      font-size: 13px;
-      i {
-        font-size: 17px;
+    flex-direction: column;
+    padding: 0.5em;
+    height: 50%;
+    .top {
+      flex-grow: 1;
+      .code,
+      .district {
+        margin-bottom: 0.5em;
+        color: #000 !important;
+        font-size: 16px !important;
+        font-weight: normal !important;
+        line-height: 1em;
+      }
+      .price {
+        color: #000;
+        font-weight: 400;
+        font-size: 13px;
+      }
+    }
+    .features {
+      color: #189ce4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75em;
+      border-top: 2px solid #dcdcdc;
+      padding-top: 0.5em;
+      div {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        gap: 0.25em;
+        i {
+          font-size: 17px;
+        }
       }
     }
   }
