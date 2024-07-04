@@ -42,4 +42,4 @@ add_action( 'template_include', function( $template ) {
     return get_stylesheet_directory() . '/house_page.php';
 } );
 
-wp_enqueue_script( 'react-search', get_stylesheet_directory_uri() . '/build/main.js', array(), date('H:i:s') );
+wp_enqueue_script( 'react-search', get_stylesheet_directory_uri() . '/build/main-astra.js', array(), date('H:i:s') );
