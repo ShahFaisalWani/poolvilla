@@ -11,12 +11,6 @@ function my_theme_styles() {
 add_filter('stylesheet_uri', 'use_parent_theme_stylesheet');
 add_action('wp_enqueue_scripts', 'my_theme_styles', 20);
 
-// function child_enqueue_styles() {
-// 	wp_enqueue_style( 'flatsome-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('flatsome-theme-css'));
-// }
-
-// add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
-
 add_action('init', function(){
     add_rewrite_rule( 'house/([a-zA-Z0-9-]+)/?$','index.php?house=$matches[1]', 'top' );
 });
@@ -62,7 +56,7 @@ function custom_title( $title ) {
                 $house =  $data["house"];
                 $name =  $house["name"];
                 
-                $title1 = "{$house['name']} {$house['location']['name']} {$house['code']} | {$house['number_of_bedrooms']} ห้องนอน Poolvillacity";    
+                $title1 = "{$house['name']} {$house['location']['name']} {$house['code']} | {$house['number_of_bedrooms']} ห้องนอน Poolvila";    
             }
         }
 
