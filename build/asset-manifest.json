@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/wp-content/themes/astra-child/build/static/css/main.1b5f5ca3.css",
-    "main.js": "/wp-content/themes/astra-child/build/static/js/main.f14fd8af.js",
+    "main.css": "/wp-content/themes/astra-child/build/static/css/main.b025937c.css",
+    "main.js": "/wp-content/themes/astra-child/build/static/js/main.84b08db8.js",
     "static/media/remixicon.svg?t=1690730386070": "/wp-content/themes/astra-child/build/static/media/remixicon.db77551b8efc76571c4f.svg",
     "static/media/remixicon.eot?t=1690730386070": "/wp-content/themes/astra-child/build/static/media/remixicon.53ec05edb4b6864b45b1.eot",
     "static/media/remixicon.ttf?t=1690730386070": "/wp-content/themes/astra-child/build/static/media/remixicon.4aa0fd158658e2a40e79.ttf",
@@ -17,11 +17,11 @@
     "static/media/new-sale.png": "/wp-content/themes/astra-child/build/static/media/new-sale.09826f4bc45bdf660266.png",
     "static/media/no-data.svg": "/wp-content/themes/astra-child/build/static/media/no-data.89dc5a078bc0a34478a9ee8f9bb4d37f.svg",
     "index.html": "/wp-content/themes/astra-child/build/index.html",
-    "main.1b5f5ca3.css.map": "/wp-content/themes/astra-child/build/static/css/main.1b5f5ca3.css.map",
-    "main.f14fd8af.js.map": "/wp-content/themes/astra-child/build/static/js/main.f14fd8af.js.map"
+    "main.b025937c.css.map": "/wp-content/themes/astra-child/build/static/css/main.b025937c.css.map",
+    "main.84b08db8.js.map": "/wp-content/themes/astra-child/build/static/js/main.84b08db8.js.map"
   },
   "entrypoints": [
-    "static/css/main.1b5f5ca3.css",
-    "static/js/main.f14fd8af.js"
+    "static/css/main.b025937c.css",
+    "static/js/main.84b08db8.js"
   ]
 }
