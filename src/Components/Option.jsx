@@ -57,13 +57,16 @@ export default function Option() {
           }}
         />
       </div>
-      <OverlayPanel
-        className="option-overlay"
-        ref={panelRef}
-        style={{ width: "40%" }}
-      >
+      <OverlayPanel className="option-overlay" ref={panelRef}>
         <p className="title">
-          <i className="ri ri-equalizer-line"></i> ตัวกรองเพิ่มเติม
+          <div>
+            <i className="ri ri-equalizer-line"></i> ตัวกรองเพิ่มเติม
+          </div>
+          <i
+            className="ri ri-close-line"
+            style={{ color: "red", fontSize: "1.3em" }}
+            onClick={(e) => panelRef.current.toggle(e)}
+          />
         </p>
         <div className="container">
           <p>จำนวนห้องนอน</p>
@@ -85,7 +88,6 @@ export default function Option() {
               </div>
             ))}
           </div>
-          <hr className="line"></hr>
           <p>สิ่งอำนวยความสะดวก</p>
           <div className="grid-container">
             {facilitieOptions.map((option) => (

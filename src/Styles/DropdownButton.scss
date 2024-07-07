@@ -107,6 +107,10 @@ ul {
   }
 }
 
+.check-in-calendar {
+  left: auto !important;
+}
+
 .p-datepicker-calendar {
   .p-highlight {
     background: #189ce433;
@@ -136,7 +140,12 @@ ul {
 }
 
 .price-overlay {
-  transform: translate(-50%, 0%);
+  right: 10% !important;
+  left: 60% !important;
+  &:before,
+  &:after {
+    display: none;
+  }
 }
 
 .p-slider-range {
@@ -210,7 +219,7 @@ ul {
 }
 
 .option-overlay {
-  transform: translate(10%, 0%);
+  // transform: translate(10%, 0%);
   position: relative;
   padding-top: 1.5em;
   > *:first-child {
@@ -218,6 +227,10 @@ ul {
   }
 
   .title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5em;
     position: absolute;
     top: 0;
     left: 0;
@@ -225,18 +238,16 @@ ul {
 }
 .container {
   font-size: 14px;
-  .line {
-    margin-block: 1.5em;
-    height: 2px;
-    border: none;
-    background: #dcdcdc;
-  }
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  gap: 0.5em;
+  &.top {
+    padding-bottom: 1em;
+    border-bottom: 2px solid #dcdcdc;
+  }
 }
 
 .grid-item {
@@ -287,5 +298,22 @@ ul {
     // border-color: #fff;
     color: #000;
     border: 1px solid #e7e7e7;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .price-overlay {
+    right: 10% !important;
+    left: 20% !important;
+  }
+  .option-overlay {
+    width: 90% !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translate(-50%, 0%);
+    &:before,
+    &:after {
+      display: none;
+    }
   }
 }
