@@ -56,7 +56,7 @@ function custom_title( $title ) {
                 $house =  $data["house"];
                 $name =  $house["name"];
                 
-                $title1 = "{$house['name']} {$house['location']['name']} {$house['code']} | {$house['number_of_bedrooms']} ห้องนอน BaanPuck";    
+                $title1 = "{$house['name']} {$house['location']['name']} {$house['code']} | {$house['number_of_bedrooms']} ห้องนอน Poolvilla City";    
             }
         }
 

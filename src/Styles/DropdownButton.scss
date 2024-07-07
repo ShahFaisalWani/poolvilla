@@ -140,6 +140,12 @@ ul {
 }
 
 .price-overlay {
+  .p-overlaypanel-content {
+    :first-child {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+  }
   right: 10% !important;
   left: 60% !important;
   &:before,
