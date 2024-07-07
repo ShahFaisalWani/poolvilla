@@ -15,27 +15,27 @@ const HouseCard = ({ house }) => {
         />
       </div>
       <div className="house-details">
-        <h3 className="title">
-          {title.length > 23 ? title.substring(0, 23) + ".." : title}
-        </h3>
-        <p className="price">
-          ราคา ฿ {house.lowestPrice.price.toLocaleString()}
-        </p>
-        <div className="line" />
+        <div className="top">
+          <div className="code">{house.code}</div>
+          {house.district && <div className="district">{house.district}</div>}
+          <div className="price">
+            ราคา ฿ {house.lowestPrice.price.toLocaleString()}
+          </div>
+        </div>
         <div className="features">
-          <p>
+          <div>
             <i className="ri-team-line"></i> สูงสุด {house.accommodate_number}
-          </p>
-          <p>
+          </div>
+          <div>
             {" "}
             <i className="ri-hotel-bed-line"></i>
             {house.number_of_bedrooms}
-          </p>
-          <p>
+          </div>
+          <div>
             {" "}
             <i className="ri-door-closed-line"></i>
             {house.number_of_bathrooms}
-          </p>
+          </div>
         </div>
       </div>
     </a>

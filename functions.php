@@ -4,7 +4,7 @@ function use_parent_theme_stylesheet() {
 }
 
 function my_theme_styles() {
-    wp_enqueue_style( 'search-react-style', get_stylesheet_directory_uri() . "/build/main.css", [], '1.0.0', false);
+    wp_enqueue_style( 'search-react-style', get_stylesheet_directory_uri() . "/build/main-flatsome.css", [], date("h:i:s"), false);
     wp_enqueue_style( 'flatsome-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('flatsome-theme-css'));
 }
 
@@ -29,7 +29,7 @@ add_action( 'template_include', function( $template ) {
     return get_stylesheet_directory() . '/house_page.php';
 } );
 
-wp_enqueue_script( 'react-search', get_stylesheet_directory_uri() . "/build/main.js", array(), date("h:i:s") );
+wp_enqueue_script( 'react-search', get_stylesheet_directory_uri() . "/build/main-flatsome.js", array(), date("h:i:s") );
 
 function custom_title( $title ) {
     $url = $_SERVER['REQUEST_URI'];
@@ -56,7 +56,7 @@ function custom_title( $title ) {
                 $house =  $data["house"];
                 $name =  $house["name"];
                 
-                $title1 = "{$house['name']} {$house['location']['name']} {$house['code']} | {$house['number_of_bedrooms']} ห้องนอน Poolvila";    
+                $title1 = "{$house['name']} {$house['location']['name']} {$house['code']} | {$house['number_of_bedrooms']} ห้องนอน BaanPuck";    
             }
         }
 
