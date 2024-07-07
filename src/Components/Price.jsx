@@ -33,68 +33,66 @@ export default function Price() {
           ].join("\n"),
         }}
       ></style>
-      <div className="button_input price" style={{ width: "100%" }}>
-        <Dropdown
-          value={value}
-          options={[option]}
-          style={{ width: "100%" }}
-          optionLabel=""
-          placeholder="เลือกช่วงราคา"
-          className="w-full md:w-14rem"
-          dropdownIcon="ri ri-exchange-dollar-line"
-          onClick={(e) => {
-            e.preventDefault();
-            panelRef.current.toggle(e);
-            setValue("฿0 - ฿50000");
-            setOption("฿0 - ฿50000");
-          }}
-        />
-      </div>
-      <OverlayPanel
-        className="price-overlay"
-        ref={panelRef}
-        style={{ width: "25%" }}
-      >
-        <div
-          className="card flex justify-content-center"
-          style={{
-            textAlign: "center",
-          }}
-        >
-          <Slider
-            step={500}
-            value={price}
-            onChange={(e) => setPrice(e.value)}
-            className="w-14rem"
-            range
-            min={0}
-            max={50000}
+      <div style={{ width: "100%", position: "relative" }}>
+        <div className="button_input price" style={{ width: "100%" }}>
+          <Dropdown
+            value={value}
+            options={[option]}
+            style={{ width: "100%" }}
+            optionLabel=""
+            placeholder="เลือกช่วงราคา"
+            className="w-full md:w-14rem"
+            dropdownIcon="ri ri-exchange-dollar-line"
+            onClick={(e) => {
+              e.preventDefault();
+              panelRef.current.toggle(e);
+              setValue("฿0 - ฿50000");
+              setOption("฿0 - ฿50000");
+            }}
           />
-          <div style={{ marginTop: "1em", display: "flex", gap: "0.5em" }}>
-            <InputText
-              type="number"
-              value={price ? price[0] : 0}
-              onChange={(e) =>
-                setPrice((prev) => {
-                  return [parseInt(e.target.value), prev ? prev[1] : 50000];
-                })
-              }
-              style={{ width: 100, height: 25, fontSize: 14 }}
-            />
-            ถึง
-            <InputText
-              type="number"
-              value={price ? price[1] : 50000}
-              onChange={(e) =>
-                setPrice((prev) => {
-                  return [prev ? prev[1] : 0, parseInt(e.target.value)];
-                })
-              }
-              style={{ width: 100, height: 25, fontSize: 14 }}
-            />
-          </div>
         </div>
-      </OverlayPanel>
+        <OverlayPanel className="price-overlay" ref={panelRef}>
+          <div
+            className="card flex justify-content-center"
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <Slider
+              step={500}
+              value={price}
+              onChange={(e) => setPrice(e.value)}
+              className="w-14rem"
+              range
+              min={0}
+              max={50000}
+            />
+            <div style={{ marginTop: "1em", display: "flex", gap: "0.5em" }}>
+              <InputText
+                type="number"
+                value={price ? price[0] : 0}
+                onChange={(e) =>
+                  setPrice((prev) => {
+                    return [parseInt(e.target.value), prev ? prev[1] : 50000];
+                  })
+                }
+                style={{ width: 100, height: 25, fontSize: 14 }}
+              />
+              ถึง
+              <InputText
+                type="number"
+                value={price ? price[1] : 50000}
+                onChange={(e) =>
+                  setPrice((prev) => {
+                    return [prev ? prev[1] : 0, parseInt(e.target.value)];
+                  })
+                }
+                style={{ width: 100, height: 25, fontSize: 14 }}
+              />
+            </div>
+          </div>
+        </OverlayPanel>
+      </div>
     </>
   );
 }
