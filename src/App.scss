@@ -23,6 +23,7 @@ input[type="submit"] {
 
 .App {
   margin: 2em 0em;
+  padding: 0 2rem;
 
   a,
   a:hover,
@@ -58,10 +59,16 @@ input[type="submit"] {
     z-index: 11;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .ProgressSpinner {
       width: 10vw;
       height: 10vw;
     }
+  }
+}
+@media (max-width: 640px) {
+  .App {
+    margin: 0.5em 0em;
+    padding: 0 0.5rem;
   }
 }
